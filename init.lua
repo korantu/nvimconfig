@@ -17,7 +17,7 @@ require('packer').startup(function(use)
       require("better_escape").setup()
     end,
   }
-  
+
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
