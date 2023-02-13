@@ -363,11 +363,11 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
+  lua_language_server = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
