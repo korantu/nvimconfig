@@ -366,14 +366,15 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-
-  lua_language_server = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
+
+-- servers['lua-language-server'] = {
+--     Lua = {
+--       workspace = { checkThirdParty = false },
+--       telemetry = { enable = false },
+--     },
+--   }
+
 
 -- Setup neovim lua configuration
 require('neodev').setup()
