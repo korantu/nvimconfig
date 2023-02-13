@@ -67,6 +67,9 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+  use 'tpope/vim-repeat' 
+  use 'ggandor/leap.nvim' -- leap from https://github.com/ggandor/leap.nvim
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -215,6 +218,8 @@ require('telescope').setup {
     },
   },
 }
+
+require('leap').add_default_mappings()
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
