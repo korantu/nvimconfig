@@ -11,6 +11,9 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  -- Tests
+  use 'vim-test/vim-test'
+
   -- lua with packer.nvim
   use { "max397574/better-escape.nvim",
     config = function()
@@ -67,6 +70,8 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+  use 'github/copilot.vim'
+
   use 'tpope/vim-repeat' 
   use 'ggandor/leap.nvim' -- leap from https://github.com/ggandor/leap.nvim
 
@@ -93,6 +98,10 @@ if is_bootstrap then
   print '=================================='
   return
 end
+
+-- Folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
@@ -135,6 +144,12 @@ vim.cmd [[colorscheme onedark]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+-- copilot
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-H>", 'copilot#Previous()', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-K>", 'copilot#Next()', { silent = true, expr = true })
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -349,6 +364,20 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
+  -- vim-test integrations
+  nmap('<leader>tt', function()
+    vim.cmd('TestNearest')
+  end, '[T]est [T]est Nearest')
+
+  -- :Git
+  nmap('<leader>kv', function()
+    vim.cmd('Git')
+  end, '[V]ersion Conrol')
+
+  -- :Terminal
+  nmap('<leader>kt', function()
+    vim.cmd('terminal')
+  end, 'Te[r]minal - open terminal')
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
