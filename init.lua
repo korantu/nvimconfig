@@ -369,10 +369,20 @@ local on_attach = function(_, bufnr)
     vim.cmd('TestNearest')
   end, '[T]est [T]est Nearest')
 
+  -- :LSP
+  nmap('<leader>kl', function()
+    vim.cmd('LspRestart')
+  end, '[K]DL [L]spRestart')
+
   -- :Git
   nmap('<leader>kv', function()
     vim.cmd('Git')
-  end, '[V]ersion Conrol')
+  end, '[V]ersion Conrol for git')
+
+  -- :Difference
+  nmap('<leader>kd', function()
+    vim.cmd('Git difftool')
+  end, 'Git [D]ifference')
 
   -- :Terminal
   nmap('<leader>kt', function()
