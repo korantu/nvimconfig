@@ -382,7 +382,14 @@ local on_attach = function(_, bufnr)
   -- :Difference
   nmap('<leader>kd', function()
     vim.cmd('Git difftool')
-  end, 'Git [D]ifference')
+  end, '[D]ifference')
+  
+  
+  -- :Black
+  nmap('<leader>kb', function()
+    vim.cmd('!black %')
+  end, '[B]lack')
+
 
   -- :Terminal
   nmap('<leader>kt', function()
