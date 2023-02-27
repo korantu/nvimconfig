@@ -387,6 +387,8 @@ local on_attach = function(_, bufnr)
   
   -- :Black
   nmap('<leader>kb', function()
+    vim.cmd('PyrightOrganizeImports')
+    vim.cmd('wa')
     vim.cmd('!black %')
   end, '[B]lack')
 
