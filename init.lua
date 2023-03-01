@@ -398,6 +398,11 @@ local on_attach = function(_, bufnr)
     vim.cmd('!black %')
   end, '[B]lack')
 
+  -- :Quickfix list 
+  nmap('<leader>kk', function()
+    vim.cmd('copen')
+  end, '[K]Quickfix list')
+
 
   -- :Terminal
   nmap('<leader>kt', function()
