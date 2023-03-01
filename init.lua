@@ -14,6 +14,12 @@ require('packer').startup(function(use)
   -- Tests
   use 'vim-test/vim-test'
 
+
+  -- Markdown previewer
+  use 'iamcco/markdown-preview.nvim'
+  -- see https://github.com/iamcco/markdown-preview.nvim for next steps
+  -- cd ~/.local/share/nvim/site/pack/packer
+
   -- lua with packer.nvim
   use { "max397574/better-escape.nvim",
     config = function()
