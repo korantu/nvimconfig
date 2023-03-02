@@ -399,9 +399,16 @@ local on_attach = function(_, bufnr)
   end, '[B]lack')
 
   -- :Quickfix list 
-  nmap('<leader>kk', function()
+  nmap('<leader>kq', function()
     vim.cmd('copen')
   end, '[K]Quickfix list')
+
+
+
+  -- :Telescope lsp_document_symbols
+  nmap('<leader>ks', function()
+    require('telescope.builtin').lsp_document_symbols()
+  end, '[S]ymbols')
 
 
   -- :Terminal
