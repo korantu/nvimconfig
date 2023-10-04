@@ -109,6 +109,9 @@ end
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- default to open folds 
+vim.opt.foldlevel = 99
+
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -266,7 +269,7 @@ vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vim' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -397,6 +400,11 @@ local on_attach = function(_, bufnr)
     vim.cmd('wa')
     vim.cmd('!black %')
   end, '[B]lack')
+
+  --:Fcore KDL
+  nmap('<leader>kk', function()
+    vim.cmd('e term://=')
+  end, '[K]dl')
 
   -- :Quickfix list 
   nmap('<leader>kq', function()
