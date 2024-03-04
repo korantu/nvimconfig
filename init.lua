@@ -640,7 +640,7 @@ local on_attach = function(_, bufnr)
 
   --:Fcore KDL
   nmap('<leader>kk', function()
-    vim.cmd('e term://=')
+    vim.cmd(':Telescope')
   end, '[K]dl')
 
   -- :Quickfix list 
