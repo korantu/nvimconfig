@@ -596,6 +596,19 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
+-- Quickfix keymaps, use ":cnext" and ":cprev" to navigate quickfix list
+local quickfix_next = function()
+    vim.cmd 'cnext'
+end
+
+local quickfix_prev = function()
+    vim.cmd 'cprev'
+end
+
+vim.keymap.set('n', ']q', quickfix_next)
+vim.keymap.set('n', '[q', quickfix_prev)
+
+
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -636,6 +649,15 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   -- vim-test integrations
+
+  
+  -- Configure vim-test
+  vim.cmd [[
+    let test#strategy = 'neovim_sticky' " or any other strategy you prefer
+    let test#dotnet#runner = 'dotnettest'
+    let test#enabledrunners = ['csharp#dotnettest', 'python#pytest']
+  ]]
+
   nmap('<leader>tt', function()
     vim.cmd('TestNearest')
   end, '[T]est [T]est Nearest')
