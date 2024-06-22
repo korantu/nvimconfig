@@ -654,8 +654,7 @@ local on_attach = function(_, bufnr)
   -- Configure vim-test
   vim.cmd [[
     let test#strategy = 'neovim_sticky' " or any other strategy you prefer
-    let test#dotnet#runner = 'dotnettest'
-    let test#enabledrunners = ['csharp#dotnettest', 'python#pytest']
+    let test#enabledrunners = ['csharp#dotnettest']
   ]]
 
   nmap('<leader>tt', function()
